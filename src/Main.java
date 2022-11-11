@@ -1,4 +1,5 @@
 import transport.Car;
+import transport.Car.Key;
 
 import java.util.Date;
 
@@ -10,6 +11,12 @@ public class Main {
         Car bmwZ8 = new Car("BMW ", "Z8", (int) 3.0, "черный", 2021, "Германия", "МКПП", "универсал", "х000хх000", 5, "winterTires");
         Car kia = new Car(" Kia", "Sportage", (int) 2.4, "красный", 2018, "Южной Корее", "АКПП", "универсал", "х000хх000", 5, "summerTires");
         Car hyunda = new Car(" Hyundai", "Avante", (int) 1.6, " оранжевый", 2016, "Южной Корее", "МКПП", "универсал", "х000хх000", 5, "summerTires");
+        Key.Insurance ladaGranta1 = new Key.Insurance((int) 2022.02,10000,999999999);
+        Key.Insurance audiA81 = new Key.Insurance((int) 2022.02,9000,999999999);
+        Key.Insurance bmwZ81 = new Key.Insurance((int) 2022.05,11000,999999999);
+        Key.Insurance kia1 = new Key.Insurance((int) 2022.03,12000,999999999);
+        Key.Insurance hyunda1 = new Key.Insurance((int) 2022.08,11000,999999999);
+
 
         System.out.println("- марка " + kia.getBrand() + " - модель " + kia.getModel() + "- объем двигателя в литрах" + kia.engineVolume + "- цвет кузова " + kia.color +
                 "- год производства" + kia.getProductionYear() + " - страна сборки" + kia.getProductionCountry());
@@ -24,10 +31,15 @@ public class Main {
 
         System.out.println("===============================================================================================================================================================");
         System.out.println(ladaGranta);
+        System.out.println(ladaGranta1);
         System.out.println(audiA8);
+        System.out.println(audiA81);
         System.out.println(bmwZ8);
+        System.out.println(bmwZ81);
         System.out.println(kia);
+        System.out.println(kia1);
         System.out.println(hyunda);
+        System.out.println(hyunda1);
 
         ladaGranta.setSummerTyre();
         System.out.println(ladaGranta.isSummerTyre);
@@ -45,11 +57,11 @@ public class Main {
         Date date2 = new Date(2023, 1, 1);
         int result = date1.compareTo(date2);
         if( result ==0)
-            System.out.println("Both dates are equal");
+            System.out.println("Обе даты равны");
         else if(result < 0)
-            System.out.println("Date1 is before Date2");
+            System.out.println("Номер страховки корректный!");
         else
-            System.out.println("Date1 is after Date2");
+            System.out.println("Номер страховки некорректный!");
 
 
     }

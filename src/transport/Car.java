@@ -1,7 +1,6 @@
 package transport;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import javax.xml.crypto.Data;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,7 +31,8 @@ public class Car {
     public String winterTires = "Зимние шины";
     public String summerTires = "Летние шины";
 
-    private class Key {
+
+    public static class Key {
         private String remoteEngineStart;
         private String keylessAccess;
 
@@ -71,12 +71,22 @@ public class Car {
             this.keylessAccess = keylessAccess;
         }
 
-        private class Insurance {
+        public static class Insurance {
             private int validityPeriod;
             private int cost;
             private int numberInsurance;
 
+            @Override
+            public String toString() {
+                return "Insurance{"  +
+                        "validityPeriod= " + validityPeriod +
+                        ", cost= " + cost +
+                        ", numberInsurance= "  + numberInsurance +
+                        '}';
+            }
+
             public Insurance(int validityPeriod, int cost, int numberInsurance) {
+
                 this.validityPeriod = validityPeriod;
                 this.cost = cost;
                 this.numberInsurance = numberInsurance;
@@ -94,10 +104,11 @@ public class Car {
                 return validityPeriod;
 
             }
-            public static void main(String args[]) {
+
+            public void main(String args[]) {
                 String numberInsurance = "125445678";
-                for(int i=0; i<numberInsurance.length(); i++) {
-                    if(numberInsurance.charAt(i)<'0' || numberInsurance.charAt(i)>'9') {
+                for (int i = 0; i < numberInsurance.length(); i++) {
+                    if (numberInsurance.charAt(i) < '0' || numberInsurance.charAt(i) > '9') {
                         System.out.println("Номер страховки некорректный!");
                         break;
                     }
@@ -125,7 +136,7 @@ public class Car {
 
             public int getNumberInsurance() {
 
-                if (numberInsurance<= 0) {
+                if (numberInsurance <= 0) {
                     this.numberInsurance = numberInsurance;
 
                 } else {
@@ -154,6 +165,7 @@ public class Car {
         this.registrationNumber = String.valueOf(registrationNumber);
         this.numberOfSeats = numberOfSeats;
         this.isSummerTyre = String.valueOf(isSummerTyre());
+
     }
 
     public String getWinterTires() {
@@ -353,6 +365,9 @@ public class Car {
         }
 
     }
+
+
 }
+
 
 
