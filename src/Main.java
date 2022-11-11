@@ -29,7 +29,6 @@ public class Main {
         System.out.println(kia);
         System.out.println(hyunda);
 
-
         ladaGranta.setSummerTyre();
         System.out.println(ladaGranta.isSummerTyre);
         System.out.println(audiA8.isSummerTyre);

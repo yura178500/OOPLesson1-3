@@ -74,13 +74,12 @@ public class Car {
         private class Insurance {
             private int validityPeriod;
             private int cost;
-            private int number;
-            public int date;
+            private int numberInsurance;
 
-            public Insurance(int validityPeriod, int cost, int number) {
+            public Insurance(int validityPeriod, int cost, int numberInsurance) {
                 this.validityPeriod = validityPeriod;
                 this.cost = cost;
-                this.number = number;
+                this.numberInsurance = numberInsurance;
 
             }
 
@@ -94,6 +93,15 @@ public class Car {
                 }
                 return validityPeriod;
 
+            }
+            public static void main(String args[]) {
+                String numberInsurance = "125445678";
+                for(int i=0; i<numberInsurance.length(); i++) {
+                    if(numberInsurance.charAt(i)<'0' || numberInsurance.charAt(i)>'9') {
+                        System.out.println("Номер страховки некорректный!");
+                        break;
+                    }
+                }
             }
 
             public void setValidityPeriod(int validityPeriod) {
@@ -115,19 +123,19 @@ public class Car {
                 this.cost = cost;
             }
 
-            public int getNumber() {
+            public int getNumberInsurance() {
 
-                if (number <= 0) {
-                    this.number = number;
+                if (numberInsurance<= 0) {
+                    this.numberInsurance = numberInsurance;
 
                 } else {
-                    this.number = Math.abs(number);
+                    this.numberInsurance = Math.abs(numberInsurance);
                 }
-                return number;
+                return numberInsurance;
             }
 
-            public void setNumber(int number) {
-                this.number = number;
+            public void setNumber(int numberInsurance) {
+                this.numberInsurance = numberInsurance;
             }
 
         }
