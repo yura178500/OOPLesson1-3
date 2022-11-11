@@ -1,11 +1,13 @@
 package transport;
 
-import javax.xml.crypto.Data;
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Car {
-    public String isSummerTyre;
+public class Car extends Transport {
+
+    private Key.Insurance insurance;
+    private Key key;
     private String brand;
     private String model;
     public int engineVolume;
@@ -17,92 +19,101 @@ public class Car {
     private String bodyType;
     public String registrationNumber;
     private int numberOfSeats;
+    public boolean summerTires;
 
-    public boolean summerTyre;
 
-    public void setSummerTyre(boolean summerTyre) {
-        this.summerTyre = summerTyre;
-    }
-
-    public void setSummerTires(String summerTires) {
+    public void setSummerTires(boolean summerTires) {
         this.summerTires = summerTires;
     }
 
-    public String winterTires = "Зимние шины";
-    public String summerTires = "Летние шины";
-
-
     public static class Key {
-        private String remoteEngineStart;
-        private String keylessAccess;
+        private boolean remoteEngineStart;
+        private boolean keylessAccess;
 
-        public Key(String remoteEngineStart, String keylessAccess) {
+        public Key(boolean remoteEngineStart, boolean keylessAccess) {
             this.remoteEngineStart = remoteEngineStart;
             this.keylessAccess = keylessAccess;
         }
 
-        public String getRemoteEngineStart() {
+        public Key() {
+            this(false, false);
+        }
 
-            if (remoteEngineStart == null || remoteEngineStart.isEmpty()) {
-                this.remoteEngineStart = remoteEngineStart;
+        public boolean getRemoteEngineStart() {
 
-            } else {
-                this.remoteEngineStart = "Некорректное значение";
-            }
             return remoteEngineStart;
         }
 
-        public void setRemoteEngineStart(String remoteEngineStart) {
-            this.remoteEngineStart = remoteEngineStart;
+        public boolean setRemoteEngineStart(String remoteEngineStart) {
+            remoteEngineStart = remoteEngineStart;
+            return false;
         }
 
-        public String getKeylessAccess() {
-
-            if (keylessAccess == null || keylessAccess.isEmpty()) {
-                this.keylessAccess = keylessAccess;
-
-            } else {
-                this.keylessAccess = "Некорректное значение";
-            }
+        public boolean getKeylessAccess() {
             return keylessAccess;
         }
 
-        public void setKeylessAccess(String keylessAccess) {
-            this.keylessAccess = keylessAccess;
+        public boolean setKeylessAccess(String keylessAccess) {
+            keylessAccess = keylessAccess;
+            return false;
+        }
+
+        public boolean isKeylessAccess() {
+            return false;
+        }
+
+        public boolean isRemoteEngineStart() {
+            return false;
         }
 
         public static class Insurance {
-            private int validityPeriod;
-            private int cost;
-            private int numberInsurance;
+            private static LocalDate validityPeriod;
+            private static int cost;
+            private static String numberInsurance;
 
-            @Override
             public String toString() {
-                return "Insurance{"  +
+                return "Insurance{" +
                         "validityPeriod= " + validityPeriod +
                         ", cost= " + cost +
-                        ", numberInsurance= "  + numberInsurance +
+                        ", numberInsurance= " + numberInsurance +
                         '}';
             }
 
-            public Insurance(int validityPeriod, int cost, int numberInsurance) {
-
+            public Insurance(LocalDate validityPeriod, int cost, String numberInsurance) {
                 this.validityPeriod = validityPeriod;
                 this.cost = cost;
                 this.numberInsurance = numberInsurance;
+                if (validityPeriod == null) {
+                    this.validityPeriod = LocalDate.now().plusDays(365);
+                } else {
+                    this.validityPeriod = validityPeriod;
+                }
+                this.cost = cost;
+                if (numberInsurance == null) {
+                    this.numberInsurance = "123456789";
+                } else {
+                    this.numberInsurance = numberInsurance;
+                }
+
 
             }
 
-            public int getValidityPeriod() {
+            public Insurance() {
+                this(null, 5000, null);
+            }
 
-                if (validityPeriod <= 0) {
-                    this.validityPeriod = validityPeriod;
+            public static LocalDate getValidityPeriod() {
+                validityPeriod = validityPeriod;
 
-                } else {
-                    this.validityPeriod = Math.abs(validityPeriod);
-                }
                 return validityPeriod;
+            }
 
+            public void checkExpiryDate() {
+                if (validityPeriod.isBefore(LocalDate.now()) || validityPeriod.isEqual(LocalDate.now())) {
+                    System.out.println("Вам нужно заново оформить страховку!");
+                } else {
+                    System.out.println("Ваша страховка действует до " + validityPeriod);
+                }
             }
 
             public void main(String args[]) {
@@ -115,17 +126,18 @@ public class Car {
                 }
             }
 
-            public void setValidityPeriod(int validityPeriod) {
-                this.validityPeriod = validityPeriod;
+            public String setValidityPeriod(String validityPeriod) {
+                validityPeriod = validityPeriod;
+                return validityPeriod;
             }
 
-            public int getCost() {
+            public static int getCost() {
 
                 if (cost <= 0) {
-                    this.cost = cost;
+                    cost = cost;
 
                 } else {
-                    this.cost = Math.abs(cost);
+                    cost = Math.abs(cost);
                 }
                 return cost;
             }
@@ -134,53 +146,102 @@ public class Car {
                 this.cost = cost;
             }
 
-            public int getNumberInsurance() {
+            public static String getNumberInsurance() {
 
-                if (numberInsurance <= 0) {
-                    this.numberInsurance = numberInsurance;
-
-                } else {
-                    this.numberInsurance = Math.abs(numberInsurance);
+                if (numberInsurance != null || numberInsurance.isEmpty()) {
+                    numberInsurance = numberInsurance;
                 }
                 return numberInsurance;
             }
 
-            public void setNumber(int numberInsurance) {
+            public void setNumberInsurance(String numberInsurance) {
+
                 this.numberInsurance = numberInsurance;
             }
 
         }
     }
 
+    public String toString() {
+        return "Car{" +
+                "insurance= " + insurance +
+                ", key= " + key +
+                ", brand= '" + brand + '\'' +
+                ", model= '" + model + '\'' +
+                ", engineVolume= " + engineVolume +
+                ", color=' " + color + '\'' +
+                ", productionYear= " + productionYear +
+                ", productionCountry= '" + productionCountry + '\'' +
+                ", transmission=' " + transmission + '\'' +
+                ", bodyType=' " + bodyType + '\'' +
+                ", registrationNumber=' " + registrationNumber + '\'' +
+                ", numberOfSeats= " + numberOfSeats +
+                ", summerTyre= " + summerTires +
+                '}';
+    }
 
-    public Car(String brand, String model, int engineVolume, String color, int productionYear, String productionCountry, String transmission, String bodyType, String registrationNumber, int numberOfSeats, String isSummerTyre) {
-        this.brand = brand;
-        this.model = model;
-        this.engineVolume = engineVolume;
-        this.color = color;
-        this.productionYear = productionYear;
-        this.productionCountry = productionCountry;
-        this.transmission = transmission;
-        this.bodyType = bodyType;
-        this.registrationNumber = String.valueOf(registrationNumber);
+
+    public boolean isSummerTires() {
+        return summerTires;
+    }
+
+    public Car(String brand, String model, int engineVolume, String color, int productionYear, String productionCountry, String transmission, String bodyType, String registrationNumber, int numberOfSeats, boolean summerTires, Key key, int insurance) {
+        super();
         this.numberOfSeats = numberOfSeats;
-        this.isSummerTyre = String.valueOf(isSummerTyre());
+        this.summerTires = summerTires;
+        insurance = (int) insurance;
+        if (brand == null || brand.length() == 0) {
+            this.brand = "default";
+        } else {
+            this.brand = brand;
+        }
+        if (model == null || model.length() == 0) {
+            this.model = "default";
+        } else {
+            this.model = model;
+        }
+        this.engineVolume = engineVolume;
+        if (color == null || color.length() == 0) {
+            this.color = "жёлтый";
+        } else {
+            this.color = color;
+        }
+        this.productionYear = productionYear;
+        if (productionCountry == null || productionCountry.length() == 0) {
+            this.productionCountry = "'страна не указана'";
+        } else {
+            this.productionCountry = productionCountry;
+        }
+        if (registrationNumber == null) {
+            this.registrationNumber = "x000xx000";
+        } else {
+            this.registrationNumber = registrationNumber;
+        }
+        if (bodyType == null) {
+            this.bodyType = "седан";
+        } else {
+            this.bodyType = bodyType;
+        }
+        if (transmission == null) {
+            this.transmission = "МКПП";
+        } else {
+            this.transmission = transmission;
+        }
+        if (key == null) {
+            this.key = new Key();
+        } else {
+            this.key = key;
+        }
+        Key.Insurance insurance1;
+        if (insurance < 0) {
+            this.insurance = new Key.Insurance();
+        }
 
+        this.numberOfSeats = numberOfSeats;
     }
 
-    public String getWinterTires() {
-        this.winterTires = winterTires;
-        return winterTires;
-    }
-
-
-    public void setWinterTires(String winterTires) {
-        this.winterTires = winterTires;
-    }
-
-
-    public void setSummerTyre() {
-        this.summerTyre = summerTyre;
+    private boolean summerTyre() {
+        return false;
     }
 
     public void setSummerTires() {
@@ -250,8 +311,6 @@ public class Car {
 
         if (transmission == null || transmission.isEmpty()) {
             this.transmission = transmission;
-        } else {
-            this.transmission = "Некорректное значение";
         }
         return transmission;
     }
@@ -264,8 +323,6 @@ public class Car {
 
         if (bodyType == null || bodyType.isEmpty()) {
             this.bodyType = bodyType;
-        } else {
-            this.bodyType = "Некорректное значение";
         }
         return bodyType;
     }
@@ -278,14 +335,12 @@ public class Car {
 
         if (registrationNumber == null || registrationNumber.isEmpty()) {
             this.registrationNumber = registrationNumber;
-        } else {
-            this.registrationNumber = "Некорректное значение";
         }
         return registrationNumber;
     }
 
     public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = String.valueOf(registrationNumber);
+        this.registrationNumber = registrationNumber;
     }
 
     public int getNumberOfSeats() {
@@ -303,39 +358,29 @@ public class Car {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public String toString() {
-        return "Car { " +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume +
-                ", color='" + color + '\'' +
-                ", productionYear=" + productionYear +
-                ", productionCountry='" + productionCountry + '\'' +
-                ", transmission='" + transmission + '\'' +
-                ", bodyType='" + bodyType + '\'' +
-                ", registrationNumber='" + registrationNumber + '\'' +
-                ", numberOfSeats=" + numberOfSeats +
-                ", summerTyre='" + isSummerTyre + '\'' + '}';
+    public Key getKey() {
+        return key;
     }
 
-    public boolean getSummerTire() {
-
-        return getSummerTire();
+    public void setKey(Key key) {
+        this.key = key;
     }
 
-    public boolean isSummerTyre() {
-        boolean summerTyre = Boolean.parseBoolean(winterTires);
-        boolean statement2 = Boolean.parseBoolean(summerTires);
+    public Key.Insurance getInsurance() {
+        return insurance;
+    }
 
-        if (summerTyre) {
-            System.out.println("winterTires");
-        } else if (statement2) {
-            System.out.println("summerTires");
-        } else {
-            System.out.println("Оба высказывания ложные.");
-        }
+    public void setInsurance(Key.Insurance insurance) {
+        this.insurance = insurance;
+    }
 
-        return summerTyre;
+    public void changingTires() {
+        summerTires = !summerTires;
+    }
+
+    public boolean getSummerTires() {
+
+        return getSummerTires();
     }
 
     public void registrationNumber(String s) {
@@ -363,6 +408,19 @@ public class Car {
                 return false;
             }
         }
+    }
+
+    public static String printCarInfo(Car car) {
+        return "Car { " + (car.isSummerTires() ? "Летняя" : "Зимняя") + " резина" +
+                ". Год выпуска: " + car.getProductionYear() +
+                ". Страная производитель: " + car.getProductionCountry() +
+                ". Регистрационный номер: " + car.getRegistrationNumber() + "." + ". Регистрационный номер: " + car.getRegistrationNumber() +
+                "." + (car.getKey().isKeylessAccess() ? " Бесключевой доступ!" : " Ключевой доступ!") +
+                (car.getKey().isRemoteEngineStart() ?
+                        " Есть удалённый запуск двигателя!" : " Нет удалённого запуска двигателя!") +
+                " Номер страховки: " + Key.Insurance.getNumberInsurance() +
+                ". Стоимость страховки: " + Key.Insurance.getCost() +
+                ". Срок действия страховки: " + Key.Insurance.getValidityPeriod();
 
     }
 

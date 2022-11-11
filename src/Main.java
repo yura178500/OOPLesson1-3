@@ -1,33 +1,72 @@
 import transport.Car;
 import transport.Car.Key;
 
+import java.time.LocalDate;
 import java.util.Date;
+
+import static transport.Car.printCarInfo;
 
 public class Main {
     public static void main(String[] args){
 
-        Car ladaGranta = new Car("Лада", "Гранта", (int) 1.7, "желтого", 2015, "Россия", "МКПП", "универсал", "х000хх000", 5, "summerTires");
-        Car audiA8 = new Car("Audi ", "A8", (int) 3.0, "черный", 2020, "Германия", "АКПП", "универсал", "х000хх000", 5, "summerTires");
-        Car bmwZ8 = new Car("BMW ", "Z8", (int) 3.0, "черный", 2021, "Германия", "МКПП", "универсал", "х000хх000", 5, "winterTires");
-        Car kia = new Car(" Kia", "Sportage", (int) 2.4, "красный", 2018, "Южной Корее", "АКПП", "универсал", "х000хх000", 5, "summerTires");
-        Car hyunda = new Car(" Hyundai", "Avante", (int) 1.6, " оранжевый", 2016, "Южной Корее", "МКПП", "универсал", "х000хх000", 5, "summerTires");
-        Key.Insurance ladaGranta1 = new Key.Insurance((int) 2022.02,10000,999999999);
-        Key.Insurance audiA81 = new Key.Insurance((int) 2022.02,9000,999999999);
-        Key.Insurance bmwZ81 = new Key.Insurance((int) 2022.05,11000,999999999);
-        Key.Insurance kia1 = new Key.Insurance((int) 2022.03,12000,999999999);
-        Key.Insurance hyunda1 = new Key.Insurance((int) 2022.08,11000,999999999);
+        Car ladaGranta = new Car("Лада", "Гранта", (int) 1.7, "желтого", 2015, "Россия", "МКПП", "универсал", "х000хх000", 5, true,null,500);
+        Car audiA8 = new Car("Audi ", "A8", (int) 3.0, "черный", 2020, "Германия", "АКПП", "универсал", "х000хх000", 5, true, null,500);
+        Car bmwZ8 = new Car("BMW ", "Z8", (int) 3.0, "черный", 2021, "Германия", "МКПП", "универсал", "х000хх000", 5, true, null,500);
+        Car kia = new Car(" Kia", "Sportage", (int) 2.4, "красный", 2018, "Южной Корее", "АКПП", "универсал", "х000хх000", 5, true, null,500);
+        Car hyunda = new Car(" Hyundai", "Avante", (int) 1.6, " оранжевый", 2016, "Южной Корее", "МКПП", "универсал", "х000хх000", 5, true, null,500);
+
+        Key.Insurance ladaGranta1 = new Key.Insurance(LocalDate.of(2022, 12, 12),
+                10000, "131313131");
+        Key.Insurance audiA81 = new Key.Insurance( LocalDate.of(2022, 12, 12),
+                10000, "131313131");
+        Key.Insurance bmwZ81 = new Key.Insurance(LocalDate.of(2022, 12, 12),
+                10000, "131313131");
+        Key.Insurance kia1 = new Key.Insurance(LocalDate.of(2022, 12, 12),
+                10000, "131313131");
+        Key.Insurance hyunda1 = new Key.Insurance( LocalDate.of(2022, 12, 12),
+                10000, "131313131");
 
 
-        System.out.println("- марка " + kia.getBrand() + " - модель " + kia.getModel() + "- объем двигателя в литрах" + kia.engineVolume + "- цвет кузова " + kia.color +
-                "- год производства" + kia.getProductionYear() + " - страна сборки" + kia.getProductionCountry());
-        System.out.println("- марка " + hyunda.getBrand() + " - модель " + hyunda.getModel() + "- объем двигателя в литрах" + hyunda.engineVolume + "- цвет кузова " + hyunda.color +
-                "- год производства" + hyunda.getProductionYear() + " - страна сборки" + hyunda.getProductionCountry());
-        System.out.println("- марка " + ladaGranta.getBrand() + " - модель " + ladaGranta.getModel() + "- объем двигателя в литрах" + ladaGranta.engineVolume + "- цвет кузова " + ladaGranta.color +
-                "- год производства" + ladaGranta.getProductionCountry() + " - страна сборки" + ladaGranta.getProductionCountry());
-        System.out.println("- марка " + bmwZ8.getBrand() + " - модель " + bmwZ8.getModel() + "- объем двигателя в литрах" + bmwZ8.engineVolume + "- цвет кузова" + bmwZ8.color +
-                "- год производства" + bmwZ8.getProductionCountry() + " - страна сборки" + bmwZ8.getProductionYear());
-        System.out.println("- марка " + audiA8.getBrand() + " - модель " + audiA8.getModel() + "- объем двигателя в литрах" + audiA8.engineVolume + "- цвет кузова" + audiA8.color +
-                "- год производства" + audiA8.getProductionCountry() + " - страна сборки" + audiA8.getProductionYear());
+        System.out.println("- марка " + kia.getBrand() + " - модель " + kia.getModel() + "- объем двигателя в литрах " + kia.engineVolume + "- цвет кузова " + kia.color +
+                "- год производства " + kia.getProductionYear() + " - страна сборки " + kia.getProductionCountry() + " Номер страховки: " + Key.Insurance.getNumberInsurance() +
+                ". Регистрационный номер: " + kia.getRegistrationNumber() +
+                "." + (kia.getKey().isKeylessAccess() ? " Бесключевой доступ!" : " Ключевой доступ!") +
+                (kia.getKey().isRemoteEngineStart() ?" Есть удалённый запуск двигателя!" : " Нет удалённого запуска двигателя!") +
+                " Номер страховки: " + kia.getInsurance().getNumberInsurance() +
+                ". Стоимость страховки: " + kia.getInsurance().getCost() +
+                ". Срок действия страховки: " + kia.getInsurance().getValidityPeriod() + (kia.isSummerTires() ? " Летняя" : " Зимняя") + " резина");
+        System.out.println("- марка " + hyunda.getBrand() + " - модель " + hyunda.getModel() + "- объем двигателя в литрах " + hyunda.engineVolume + "- цвет кузова " + hyunda.color +
+                "- страна сборки " + hyunda.getProductionYear() + " - год производства" + hyunda.getProductionCountry() + " Номер страховки: " + Key.Insurance.getNumberInsurance() +
+                ". Регистрационный номер: " + hyunda.getRegistrationNumber() +
+                "." + (hyunda.getKey().isKeylessAccess() ? " Бесключевой доступ!" : " Ключевой доступ!") +
+                (hyunda.getKey().isRemoteEngineStart() ?" Есть удалённый запуск двигателя!" : " Нет удалённого запуска двигателя!") +
+                " Номер страховки: " + hyunda.getInsurance().getNumberInsurance() +
+                ". Стоимость страховки: " + hyunda.getInsurance().getCost() +
+                ". Срок действия страховки: " + hyunda.getInsurance().getValidityPeriod() + (hyunda.isSummerTires() ? " Летняя" : " Зимняя") + " резина");
+        System.out.println("- марка " + ladaGranta.getBrand() + " - модель " + ladaGranta.getModel() + "- объем двигателя в литрах " + ladaGranta.engineVolume + "- цвет кузова " + ladaGranta.color +
+                "- страна сборки " + ladaGranta.getProductionCountry() + " - год производства " + ladaGranta.getProductionCountry() + " Номер страховки: " + Key.Insurance.getNumberInsurance() +
+                ". Регистрационный номер: " + ladaGranta.getRegistrationNumber() +
+                "." + (ladaGranta.getKey().isKeylessAccess() ? " Бесключевой доступ!" : " Ключевой доступ!") +
+                (ladaGranta.getKey().isRemoteEngineStart() ?" Есть удалённый запуск двигателя!" : " Нет удалённого запуска двигателя!") +
+                " Номер страховки: " + ladaGranta.getInsurance().getNumberInsurance() +
+                ". Стоимость страховки: " + ladaGranta.getInsurance().getCost() +
+                ". Срок действия страховки: " + ladaGranta.getInsurance().getValidityPeriod() + (ladaGranta.isSummerTires() ? " Летняя" : " Зимняя") + " резина");
+        System.out.println("- марка " + bmwZ8.getBrand() + " - модель " + bmwZ8.getModel() + "- объем двигателя в литрах " + bmwZ8.engineVolume + "- цвет кузова " + bmwZ8.color +
+                "- страна сборки " + bmwZ8.getProductionCountry() + " - год производства" + bmwZ8.getProductionYear() +" Номер страховки: " + Key.Insurance.getNumberInsurance() +
+                ". Регистрационный номер: " + bmwZ8.getRegistrationNumber() +
+                "." + (bmwZ8.getKey().isKeylessAccess() ? " Бесключевой доступ!" : " Ключевой доступ!") +
+                (bmwZ8.getKey().isRemoteEngineStart() ?" Есть удалённый запуск двигателя!" : " Нет удалённого запуска двигателя!") +
+                " Номер страховки: " + bmwZ8.getInsurance().getNumberInsurance() +
+                ". Стоимость страховки: " + bmwZ8.getInsurance().getCost() +
+                ". Срок действия страховки: " + bmwZ8.getInsurance().getValidityPeriod() + (bmwZ8.isSummerTires() ? " Летняя" : " Зимняя") + " резина");
+        System.out.println("- марка " + audiA8.getBrand() + " - модель " + audiA8.getModel() + "- объем двигателя в литрах " + audiA8.engineVolume + "- цвет кузова " + audiA8.color +
+                "- страна сборки " + audiA8.getProductionCountry() + " - год производства " + audiA8.getProductionYear() + " Номер страховки: " + Key.Insurance.getNumberInsurance() +
+                ". Регистрационный номер: " + audiA8.getRegistrationNumber() +
+                "." + (audiA8.getKey().isKeylessAccess() ? " Бесключевой доступ!" : " Ключевой доступ!") +
+                (audiA8.getKey().isRemoteEngineStart() ?" Есть удалённый запуск двигателя!" : " Нет удалённого запуска двигателя!") +
+                " Номер страховки: " + audiA8.getInsurance().getNumberInsurance() +
+                ". Стоимость страховки: " + audiA8.getInsurance().getCost() +
+                ". Срок действия страховки: " + audiA8.getInsurance().getValidityPeriod() + (audiA8.isSummerTires() ? " Летняя" : " Зимняя") + " резина");
 
         System.out.println("===============================================================================================================================================================");
         System.out.println(ladaGranta);
@@ -41,17 +80,14 @@ public class Main {
         System.out.println(hyunda);
         System.out.println(hyunda1);
 
-        ladaGranta.setSummerTyre();
-        System.out.println(ladaGranta.isSummerTyre);
-        System.out.println(audiA8.isSummerTyre);
-        System.out.println(bmwZ8.isSummerTyre);
-        System.out.println(kia.isSummerTyre);
-        System.out.println(hyunda.isSummerTyre);
+        ladaGranta.setColor("розовый");
+        audiA81.setNumberInsurance("a078aa777фывфыв");;
 
         ladaGranta.registrationNumber("С065МК 78RUS");
         Car.CarStateNumberValidator stateNumber = new Car.CarStateNumberValidator();
         String st = ladaGranta.getRegistrationNumber();
         System.out.println(stateNumber.isValid(st));
+
 
         Date date1 = new Date(2022, 1, 1);
         Date date2 = new Date(2023, 1, 1);
@@ -62,7 +98,6 @@ public class Main {
             System.out.println("Номер страховки корректный!");
         else
             System.out.println("Номер страховки некорректный!");
+       }}
 
 
-    }
-       }
