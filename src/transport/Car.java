@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Car extends Transport {
+public class Car {
 
     private Key.Insurance insurance;
     private Key key;
@@ -186,7 +186,6 @@ public class Car extends Transport {
     }
 
     public Car(String brand, String model, int engineVolume, String color, int productionYear, String productionCountry, String transmission, String bodyType, String registrationNumber, int numberOfSeats, boolean summerTires, Key key, int insurance) {
-        super();
         this.numberOfSeats = numberOfSeats;
         this.summerTires = summerTires;
         insurance = (int) insurance;

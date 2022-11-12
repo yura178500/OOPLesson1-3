@@ -9,7 +9,8 @@ public class Transport {
     public int maximumMovementSpeed;
 
     public Transport(String stamp, String model, int yearOfRelease, String countryOfManufacture, String bodyColor, int maximumMovementSpeed) {
-        if (stamp == null || stamp.length() == 0) {
+
+        if (stamp == null || stamp.isEmpty()) {
             this.stamp = "default";
         } else {
             this.stamp = stamp;
@@ -88,4 +89,4 @@ public class Transport {
     public void setMaximumMovementSpeed(int maximumMovementSpeed) {
         this.maximumMovementSpeed = maximumMovementSpeed;
     }
-}
+    }
