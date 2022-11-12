@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Car {
+public class Car extends Transport {
 
     private Key.Insurance insurance;
     private Key key;
@@ -178,6 +178,9 @@ public class Car {
                 ", numberOfSeats= " + numberOfSeats +
                 ", summerTyre= " + summerTires +
                 '}';
+    }
+    public void refill(){
+        System.out.println(" можно заправлять бензином, дизелем на заправке или заряжать на специальных электропарковках, если это электрокар ");
     }
 
 

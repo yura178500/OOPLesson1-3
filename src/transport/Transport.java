@@ -1,13 +1,12 @@
 package transport;
 
-public class Transport {
+public abstract class Transport {
     public String stamp;
     public String model;
     private int yearOfRelease;
     private String countryOfManufacture;
     public String bodyColor;
     public int maximumMovementSpeed;
-
     public Transport(String stamp, String model, int yearOfRelease, String countryOfManufacture, String bodyColor, int maximumMovementSpeed) {
 
         if (stamp == null || stamp.isEmpty()) {
@@ -40,6 +39,9 @@ public class Transport {
         } else {
             this.maximumMovementSpeed = maximumMovementSpeed;
         }
+    }
+
+    public Transport() {
     }
 
     public String getStamp() {
@@ -89,4 +91,11 @@ public class Transport {
     public void setMaximumMovementSpeed(int maximumMovementSpeed) {
         this.maximumMovementSpeed = maximumMovementSpeed;
     }
+
+
+    public abstract void refill();
+
     }
+
+
+

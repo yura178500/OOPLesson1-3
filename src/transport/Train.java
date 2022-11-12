@@ -9,29 +9,43 @@ public class Train extends Transport {
     public String finalStop;
     public int numberOfWagons;
 
+
+    public String toString() {
+        return "Train{" +
+                "Цена поездки " + thePriceOfTheTrip +
+                ", Страна производства "  + getCountryOfManufacture() +
+                ", Название станции отбытия'" + nameOfTheDepartureStation + '\'' +
+                ", Конечная остановка'" + finalStop + '\'' +
+                ", Количество вагонов " + numberOfWagons +
+                ", Марка'" + stamp + '\'' +
+                ", Модель" + model + '\'' +
+                ", Максимальная скорость передвижения    "+ "\"" + maximumMovementSpeed +  "Год выпуска " + getYearOfRelease() +
+                '}';
+    }
+
     public Train(String stamp, String model, int yearOfRelease, String countryOfManufacture, String bodyColor, int maximumMovementSpeed, double thePriceOfTheTrip, double travelTime, String nameOfTheDepartureStation, String finalStop, int numberOfWagons) {
         super(stamp, model, yearOfRelease, countryOfManufacture, bodyColor, maximumMovementSpeed);
         if (nameOfTheDepartureStation == null || nameOfTheDepartureStation.isEmpty()) {
             this.nameOfTheDepartureStation = "default";
         } else {
-            this.nameOfTheDepartureStation = stamp;
+            this.nameOfTheDepartureStation = nameOfTheDepartureStation;
         }
         if (finalStop == null || finalStop.isEmpty()) {
             this.finalStop = "default";
         } else {
-            this.finalStop = stamp;
+            this.finalStop = finalStop;
         }if (numberOfWagons <= 0) {
-            this.numberOfWagons = yearOfRelease;
+            this.numberOfWagons = numberOfWagons;
         } else {
-            this.numberOfWagons = yearOfRelease;
+            this.numberOfWagons = numberOfWagons;
         }if (thePriceOfTheTrip <= 0) {
-            this.thePriceOfTheTrip = yearOfRelease;
+            this.thePriceOfTheTrip = thePriceOfTheTrip;
         } else {
-            this.thePriceOfTheTrip = yearOfRelease;
+            this.thePriceOfTheTrip = thePriceOfTheTrip;
         }if (travelTime <= 0) {
-            this.travelTime = yearOfRelease;
+            this.travelTime = travelTime;
         } else {
-            this.travelTime = yearOfRelease;
+            this.travelTime = travelTime;
         }
 
     }
@@ -74,6 +88,9 @@ public class Train extends Transport {
 
     public void setNumberOfWagons(int numberOfWagons) {
         this.numberOfWagons = numberOfWagons;
+    }
+    public void refill(){
+        System.out.println(" нужно заправлять дизелем ");
     }
 
 
