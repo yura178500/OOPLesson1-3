@@ -1,7 +1,5 @@
-import transport.Bus;
-import transport.Car;
+import transport.*;
 import transport.Car.Key;
-import transport.Train;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -55,8 +53,7 @@ public class Main {
                 ". Срок действия страховки: " + ladaGranta.getInsurance().getValidityPeriod() + (ladaGranta.isSummerTires() ? " Летняя" : " Зимняя") + " резина");
         System.out.println("- марка " + bmwZ8.getBrand() + " - модель " + bmwZ8.getModel() + "- объем двигателя в литрах " + bmwZ8.engineVolume + "- цвет кузова " + bmwZ8.color +
                 "- страна сборки " + bmwZ8.getProductionCountry() + " - год производства" + bmwZ8.getProductionYear() + " Номер страховки: " + Key.Insurance.getNumberInsurance() +
-                ". Регистрационный номер: " + bmwZ8.getRegistrationNumber() +
-                "." + (bmwZ8.getKey().isKeylessAccess() ? " Бесключевой доступ!" : " Ключевой доступ!") +
+                ". Регистрационный номер: " + bmwZ8.getRegistrationNumber() + "." + (bmwZ8.getKey().isKeylessAccess() ? " Бесключевой доступ!" : " Ключевой доступ!") +
                 (bmwZ8.getKey().isRemoteEngineStart() ? " Есть удалённый запуск двигателя!" : " Нет удалённого запуска двигателя!") +
                 " Номер страховки: " + bmwZ8.getInsurance().getNumberInsurance() +
                 ". Стоимость страховки: " + bmwZ8.getInsurance().getCost() +
@@ -70,63 +67,114 @@ public class Main {
                 ". Стоимость страховки: " + audiA8.getInsurance().getCost() +
                 ". Срок действия страховки: " + audiA8.getInsurance().getValidityPeriod() + (audiA8.isSummerTires() ? " Летняя" : " Зимняя") + " резина");
 
-        System.out.println("===============================================================================================================================================================");
-        System.out.println(ladaGranta);
-        System.out.println(ladaGranta1);
-        System.out.println(audiA8);
-        System.out.println(audiA81);
-        System.out.println(bmwZ8);
-        System.out.println(bmwZ81);
-        System.out.println(kia);
-        System.out.println(kia1);
-        System.out.println(hyunda);
-        System.out.println(hyunda1);
+        //   System.out.println("===============================================================================================================================================================");
+        //  System.out.println(ladaGranta);
+        //  System.out.println(ladaGranta1);
+        //   System.out.println(audiA8);
+        //   System.out.println(audiA81);
+        //   System.out.println(bmwZ8);
+        //   System.out.println(bmwZ81);
+        //   System.out.println(kia);
+        //   System.out.println(kia1);
+        //   System.out.println(hyunda);
+        //  System.out.println(hyunda1);
 
-        ladaGranta.setColor("розовый");
-        audiA81.setNumberInsurance("a078aa777фывфыв");
+     //   ladaGranta.setColor("розовый");
+     //   audiA81.setNumberInsurance("a078aa777фывфыв");
         ;
 
-        ladaGranta.registrationNumber("С065МК 78RUS");
-        Car.CarStateNumberValidator stateNumber = new Car.CarStateNumberValidator();
-        String st = ladaGranta.getRegistrationNumber();
-        System.out.println(stateNumber.isValid(st));
+        //  ladaGranta.registrationNumber("С065МК 78RUS");
+        //   Car.CarStateNumberValidator stateNumber = new Car.CarStateNumberValidator();
+        //   String st = ladaGranta.getRegistrationNumber();
+        //   System.out.println(stateNumber.isValid(st));
 
 
-        Date date1 = new Date(2022, 1, 1);
-        Date date2 = new Date(2023, 1, 1);
-        int result = date1.compareTo(date2);
-        if (result == 0)
-            System.out.println("Обе даты равны");
-        else if (result < 0)
-            System.out.println("Номер страховки корректный!");
-        else
-            System.out.println("Номер страховки некорректный!");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        //  Date date1 = new Date(2022, 1, 1);
+        //  Date date2 = new Date(2023, 1, 1);
+        //   int result = date1.compareTo(date2);
+        //   if (result == 0)
+        //      System.out.println("Обе даты равны");
+        //   else if (result < 0)
+        //      System.out.println("Номер страховки корректный!");
+        //   else
+        //      System.out.println("Номер страховки некорректный!");
+        //  System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
 
-    Train train = new Train("Ласточка ", " B-901 ", 2011, "России ", "", 301, 3500, 20.30, " отходит от Белорусского вокзала  ", " следует до станции Минск-Пассажирский ", 11);
-    Train train1 = new Train("Ленинград ", " D-125 ", 2019, "России ", "", 270, 1700, 20.30, " отходит от Ленинградского вокзала  ", "следует до станции Ленинград-Пассажирский ", 8);
+    //    Train train = new Train("Ласточка ", " B-901 ", 2011, "России ", "", 301, 3500, 20.30, " отходит от Белорусского вокзала  ", " следует до станции Минск-Пассажирский ", 11);
+    //    Train train1 = new Train("Ленинград ", " D-125 ", 2019, "России ", "", 270, 1700, 20.30, " отходит от Ленинградского вокзала  ", "следует до станции Ленинград-Пассажирский ", 8);
 
-    Bus bus = new Bus("Икарус", "121", 2011, "России ", "Белый ", 120, 1500, 11.30, " отходит от Белорусского вокзала  ", " следует до Белорусского вокзала  ", 1);
-    Bus bus1 = new Bus("БМВ", "121", 2016, "Германия ", "Красный", 160, 1700, 10.30, " отходит от Белорусского вокзала  ", " следует до Белорусского вокзала  ", 1);
-    Bus bus2 = new Bus("Пазик", "101", 2019, "России ", "Черный ", 110, 1000, 11.30, " отходит от Белорусского вокзала  ", " следует до Белорусского вокзала  ", 1);
-        System.out.println(train);
-        System.out.println(train1);
+        Bus bus = new Bus("Икарус", "121", 2011, "России ", "Белый ", 120, 1500, 11.30, " отходит от Белорусского вокзала  ", " следует до Белорусского вокзала  ", 1, 3);
+        Bus bus1 = new Bus("БМВ", "121", 2016, "Германия ", "Красный", 160, 1700, 10.30, " отходит от Белорусского вокзала  ", " следует до Белорусского вокзала  ", 1, 2.7);
+        Bus bus2 = new Bus("Пазик", "101", 2019, "России ", "Черный ", 110, 1000, 11.30, " отходит от Белорусского вокзала  ", " следует до Белорусского вокзала  ", 1, 3.1);
+        Bus bus3 = new Bus("Лиаз", "101", 2019, "России ", "Черный ", 110, 1000, 11.30, " отходит от Белорусского вокзала  ", " следует до Белорусского вокзала  ", 1, 3.1);
+     //   System.out.println(train);
+     //   System.out.println(train1);
         System.out.println(bus);
         System.out.println(bus1);
         System.out.println(bus2);
+        System.out.println(bus3);
         System.out.println("=============================================================================================================================");
-        bus2.refill();
-        bus1.refill();
-        bus.refill();
-        train1.refill();
-        train.refill();
-        ladaGranta.refill();
-        audiA8.refill();
-        bmwZ8.refill();
-        hyunda.refill();
-        kia.refill();
-}
+     //   bus2.refill();
+     //   bus1.refill();
+     //   bus.refill();
+     //   train1.refill();
+    //    train.refill();
+      //  ladaGranta.refill();
+      //  audiA8.refill();
+       // bmwZ8.refill();
+      //  hyunda.refill();
+     //   kia.refill();
+        System.out.println("==============================++++++++++++++++++++++++++++++++++++++++++++++++++===");
+        PassengerCars cars = new PassengerCars("Лада", "Granta", 2.0);
+        PassengerCars cars1 = new PassengerCars("Ауди", "A8", 2.4);
+        PassengerCars cars2 = new PassengerCars("Киа", "Sportage", 2.8);
+        PassengerCars cars3 = new PassengerCars("Хундай", "Avante", 1.4);
+
+        Trucks jac = new Trucks("JAC", "N-35/25", 3.4);
+        Trucks kamaz = new Trucks("Камаз", "54901", 2.4);
+        Trucks valdai = new Trucks("Волдай", "Next", 3.4);
+        Trucks gazel = new Trucks("Газель", "NN", 2.8);
+
+        System.out.println(cars);
+        System.out.println(cars1);
+        System.out.println(cars2);
+        System.out.println(cars3);
+        System.out.println(jac);
+        System.out.println(kamaz);
+        System.out.println(valdai);
+        System.out.println(gazel);
+
+        cars.startMovements();
+        jac.finishMovements();
+
+        bus3.maximumSpeed();
+
+        chekCompeting(bus3);
+        gazel.command(bus2.CMD_PITSTOP);
+        jac.command(bus1.CMD_MAXIMUM_SPID);
+
+        System.out.println("-----------------------------------------------------------------");
+
+
+        Driver<Bus> igor = new Driver<>("Игорь ", "катигория Е", 8);
+        Driver<Trucks> dima = new Driver<>("Дима ", "катигория C", 8);
+        Driver<PassengerCars> oleg = new Driver<>("Олег ", "катигория B", 8);
+        System.out.println("водитель " + "\"" + igor +  "управляет автомобилем " + bus1 + "  и будет участвовать в заезде");
+        System.out.println("водитель "+"\""+ dima +  "управляет автомобилем " + jac + "  и будет участвовать в заезде");
+        System.out.println("водитель "+"\""+ oleg +  "управляет автомобилем " + cars1 + "  и будет участвовать в заезде");
+
+
+    }
+
+    public static void chekCompeting(Competing... transports) {
+        for (Competing transport : transports) {
+            for (String command : transport.getCompeting()) {
+                transport.doCommand(command);
+            }
+        }
+    }
+
 }
 
 

@@ -7,6 +7,7 @@ public abstract class Transport {
     private String countryOfManufacture;
     public String bodyColor;
     public int maximumMovementSpeed;
+
     public Transport(String stamp, String model, int yearOfRelease, String countryOfManufacture, String bodyColor, int maximumMovementSpeed) {
 
         if (stamp == null || stamp.isEmpty()) {
@@ -95,7 +96,7 @@ public abstract class Transport {
 
     public abstract void refill();
 
-    }
+}
 
 
 

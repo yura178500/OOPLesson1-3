@@ -179,7 +179,8 @@ public class Car extends Transport {
                 ", summerTyre= " + summerTires +
                 '}';
     }
-    public void refill(){
+
+    public void refill() {
         System.out.println(" можно заправлять бензином, дизелем на заправке или заряжать на специальных электропарковках, если это электрокар ");
     }
 

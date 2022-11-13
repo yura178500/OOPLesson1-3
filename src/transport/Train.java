@@ -13,13 +13,13 @@ public class Train extends Transport {
     public String toString() {
         return "Train{" +
                 "Цена поездки " + thePriceOfTheTrip +
-                ", Страна производства "  + getCountryOfManufacture() +
+                ", Страна производства " + getCountryOfManufacture() +
                 ", Название станции отбытия'" + nameOfTheDepartureStation + '\'' +
                 ", Конечная остановка'" + finalStop + '\'' +
                 ", Количество вагонов " + numberOfWagons +
                 ", Марка'" + stamp + '\'' +
                 ", Модель" + model + '\'' +
-                ", Максимальная скорость передвижения    "+ "\"" + maximumMovementSpeed +  "Год выпуска " + getYearOfRelease() +
+                ", Максимальная скорость передвижения    " + "\"" + maximumMovementSpeed + "Год выпуска " + getYearOfRelease() +
                 '}';
     }
 
@@ -34,15 +34,18 @@ public class Train extends Transport {
             this.finalStop = "default";
         } else {
             this.finalStop = finalStop;
-        }if (numberOfWagons <= 0) {
+        }
+        if (numberOfWagons <= 0) {
             this.numberOfWagons = numberOfWagons;
         } else {
             this.numberOfWagons = numberOfWagons;
-        }if (thePriceOfTheTrip <= 0) {
+        }
+        if (thePriceOfTheTrip <= 0) {
             this.thePriceOfTheTrip = thePriceOfTheTrip;
         } else {
             this.thePriceOfTheTrip = thePriceOfTheTrip;
-        }if (travelTime <= 0) {
+        }
+        if (travelTime <= 0) {
             this.travelTime = travelTime;
         } else {
             this.travelTime = travelTime;
@@ -89,10 +92,10 @@ public class Train extends Transport {
     public void setNumberOfWagons(int numberOfWagons) {
         this.numberOfWagons = numberOfWagons;
     }
-    public void refill(){
+
+    public void refill() {
         System.out.println(" нужно заправлять дизелем ");
     }
-
 
 
 }
