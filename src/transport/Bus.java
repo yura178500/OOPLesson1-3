@@ -3,7 +3,7 @@ package transport;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class Bus extends Train implements Competing {
+public class Bus extends Train {
 
     public static final String CMD_PITSTOP = " Пит-стоп ";
     public static final String CMD_BEST_LSP_TAIM = " Лучшее время круга ";
@@ -14,7 +14,7 @@ public class Bus extends Train implements Competing {
     public String stamp;
     public String model;
 
-   public double engineCapacity;
+    public double engineCapacity;
     private String[] commandCommands;
 
     public double getEngineCapacity() {
@@ -25,8 +25,8 @@ public class Bus extends Train implements Competing {
         this.engineCapacity = engineCapacity;
     }
 
-   public Bus(String stamp, String model, int yearOfRelease, String countryOfManufacture, String bodyColor, int maximumMovementSpeed, double thePriceOfTheTrip, double travelTime, String nameOfTheDepartureStation, String finalStop, int numberOfWagons, double engineCapacity) {
-   super(stamp, model, yearOfRelease, countryOfManufacture, bodyColor, maximumMovementSpeed, thePriceOfTheTrip, travelTime, nameOfTheDepartureStation, finalStop, numberOfWagons);
+    public Bus(String stamp, String model, int yearOfRelease, String countryOfManufacture, String bodyColor, int maximumMovementSpeed, double thePriceOfTheTrip, double travelTime, String nameOfTheDepartureStation, String finalStop, int numberOfWagons, double engineCapacity) {
+        super(stamp, model, yearOfRelease, countryOfManufacture, bodyColor, maximumMovementSpeed, thePriceOfTheTrip, travelTime, nameOfTheDepartureStation, finalStop, numberOfWagons);
         if (stamp != null || stamp.isEmpty()) {
             this.stamp = stamp;
         }
@@ -50,57 +50,61 @@ public class Bus extends Train implements Competing {
                 ", Количество вагонов " + numberOfWagons +
                 ", Марка' " + stamp + '\'' +
                 ", Модель " + model + '\'' +
-                ", Максимальная скорость передвижения "+ "\"" + maximumMovementSpeed +  "Год выпуска " + getYearOfRelease() + ", engineCapacity=" + engineCapacity +
+                ", Максимальная скорость передвижения " + "\"" + maximumMovementSpeed + "Год выпуска " + getYearOfRelease() + ", engineCapacity=" + engineCapacity +
                 '}';
-} public void refill(){
+    }
+
+    public void refill() {
         System.out.println(" можно заправлять бензином или дизелем на заправке. ");
     }
+
     public void startMovements() {
         System.out.println(" начать движение ");
     }
+
     public void finishMovements() {
         System.out.println(" закончить движение ");
     }
+
     public String[] getCompeting() {
 
         return COMPETING;
     }
 
-    @Override
+
     public void command(String command) {
         commandCommands = Arrays.copyOf(commandCommands, commandCommands.length + 1);
         commandCommands[commandCommands.length - 1] = command;
     }
 
-    @Override
+
     public String[] typeOfRights() {
         return new String[0];
     }
 
-    @Override
+
     public String[] pitStop() {
 
         return competing;
     }
 
-    @Override
+
     public String[] bestLapTime() {
-        return  competing;
+        return competing;
     }
 
-    @Override
+
     public String[] maximumSpeed() {
         return competing;
     }
 
 
-    @Override
     public void doCommand(String command) {
         System.out.println(" Команда " + command);
 
         switch (command) {
             case CMD_PITSTOP:
-                System.out.println(" Еду на пит стоп " );
+                System.out.println(" Еду на пит стоп ");
                 break;
             case CMD_BEST_LSP_TAIM:
                 System.out.println(" Это лучший круг ");

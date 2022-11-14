@@ -75,6 +75,7 @@ public class Train extends Transport {
 
     public void setNameOfTheDepartureStation(String nameOfTheDepartureStation) {
         this.nameOfTheDepartureStation = nameOfTheDepartureStation;
+
     }
 
     public String getFinalStop() {

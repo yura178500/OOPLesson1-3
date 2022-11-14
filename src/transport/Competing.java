@@ -1,17 +1,11 @@
 package transport;
 
 public interface Competing {
-    String[] pitStop();
 
-    String[] bestLapTime();
+    void pitStop();
 
-    String[] maximumSpeed();
+    int bestLapTime();
 
-    void doCommand(String command);
+    int maximumSpeed();
 
-    String[] getCompeting();
-
-    void command(String command);
-
-    String[] typeOfRights();
 }

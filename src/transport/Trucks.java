@@ -1,100 +1,45 @@
 package transport;
 
-public class Trucks extends Transport implements Competing {
-    public String stamp;
-    public String model;
-    public double engineCapacity;
+import java.util.concurrent.ThreadLocalRandom;
 
+public class Trucks extends TransportForRacing implements Competing {
 
-    public String toString() {
-        return "Trucks{" +
-                "stamp='" + stamp + '\'' +
-                ", model='" + model + '\'' +
-                ", engineCapacity=" + engineCapacity +
-                '}';
+    public Trucks(String brand, String model, double engineVolume) {
+        super(brand, model, engineVolume);
     }
 
-    public Trucks(String stamp, String model, double engineCapacity) {
-        if (stamp != null || stamp.isEmpty()) {
-            this.stamp = stamp;
-        }
-        if (model != null || model.isEmpty()) {
-            this.model = model;
-        }
-        if (engineCapacity >= 0) {
-            this.engineCapacity = engineCapacity;
-        }
+    public void startDriving() {
+        System.out.printf("Грузовик %s %s начни движение",
+                this.getBrand(),
+                this.getModel());
     }
 
-    public String getStamp() {
-        return stamp;
+
+    public void finishDriving() {
+        System.out.printf("Грузовик %s %s закончи движение",
+                this.getBrand(),
+                this.getModel());
     }
 
-    public void setStamp(String stamp) {
-        this.stamp = stamp;
+    public void pitStop() {
+        System.out.printf("Грузовик! %s %s Пит-Стоп! ",
+                this.getBrand(),
+                this.getModel());
     }
 
-    public String getModel() {
-        return model;
+
+    public int bestLapTime() {
+        return ThreadLocalRandom.current().nextInt(1, 20);
     }
 
-    public void setModel(String model) {
-        this.model = model;
+
+    public int maximumSpeed() {
+        return ThreadLocalRandom.current().nextInt(1, 250);
     }
 
-    @Override
-    public void refill() {
-
-    }
-
-    public double getEngineCapacity() {
-        return engineCapacity;
-    }
-
-    public void setEngineCapacity(double engineCapacity) {
-        this.engineCapacity = engineCapacity;
-    }
-
-    public void startMovements() {
-        System.out.println(" начать движение ");
-    }
-
-    public void finishMovements() {
-        System.out.println(" закончить движение ");
-    }
-
-    @Override
-    public String[] pitStop() {
-        return new String[0];
-    }
-
-    @Override
-    public String[] bestLapTime() {
-        return new String[0];
-    }
-
-    @Override
-    public String[] maximumSpeed() {
-        return new String[0];
-    }
-
-    @Override
-    public void doCommand(String command) {
-
-    }
-
-    @Override
-    public String[] getCompeting() {
-        return new String[0];
-    }
-
-    @Override
-    public void command(String command) {
-
-    }
-
-    @Override
-    public String[] typeOfRights() {
-        return new String[0];
+    public void printTrucks() {
+        System.out.println("Грузовик: " + getBrand() +
+                ", модель: " + getModel() +
+                ", объем двигателя: " + getEngineVolume() + " л");
     }
 }
