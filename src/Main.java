@@ -127,20 +127,21 @@ public class Main {
         //  hyunda.refill();
         //   kia.refill();
         System.out.println("==============================++++++++++++++++++++++++++++++++++++++++++++++++++===");
-        TheBuses buses = new TheBuses("Икарус", "121", 3.2);
-        TheBuses buses1 = new TheBuses("Пазик", "101", 4.0);
-        TheBuses buses2 = new TheBuses("Лиаз", "101", 3.2);
-        TheBuses buses3 = new TheBuses("БМВ", "121", 3.4);
+        TheBuses buses = new TheBuses("Икарус", "121", 3.2,TypeOfoutOfSight.LARGE);
+        TheBuses buses1 = new TheBuses("Пазик", "101", 4.0,TypeOfoutOfSight.ESPECIALLY);
+        TheBuses buses2 = new TheBuses("Лиаз", "101", 3.2,TypeOfoutOfSight.MEDIUM);
+        TheBuses buses3 = new TheBuses("БМВ", "121", 3.4,TypeOfoutOfSight.ESPECIALLE_SMALL);
+        TheBuses buses4 = new TheBuses("БМВ", "121", 3.4,TypeOfoutOfSight.SMAL);
 
-        PassengerCars cars = new PassengerCars("Лада", "Granta", 2.0);
-        PassengerCars cars1 = new PassengerCars("Ауди", "A8", 2.4);
-        PassengerCars cars2 = new PassengerCars("Киа", "Sportage", 2.8);
-        PassengerCars cars3 = new PassengerCars("Хундай", "Avante", 1.4);
+        PassengerCars cars = new PassengerCars("Лада", "Granta", 2.0,TypeCars.CROSSOVER);
+        PassengerCars cars1 = new PassengerCars("Ауди", "A8", 2.4,TypeCars.MINIVAN);
+        PassengerCars cars2 = new PassengerCars("Киа", "Sportage", 2.8,TypeCars.SEDAN);
+        PassengerCars cars3 = new PassengerCars("Хундай", "Avante", 1.4,TypeCars.SUV);
 
-        Trucks jac = new Trucks("JAC", "N-35/25", 3.4);
-        Trucks kamaz = new Trucks("Камаз", "54901", 2.4);
-        Trucks valdai = new Trucks("Волдай", "Next", 3.4);
-        Trucks gazel = new Trucks("Газель", "NN", 2.8);
+        Trucks jac = new Trucks("JAC", "N-35/25", 3.4,TypeOfLoadCapacity.N1);
+        Trucks kamaz = new Trucks("Камаз", "54901", 2.4,TypeOfLoadCapacity.N2);
+        Trucks valdai = new Trucks("Волдай", "Next", 3.4,TypeOfLoadCapacity.N3);
+        Trucks gazel = new Trucks("Газель", "NN", 2.8,TypeOfLoadCapacity.N2);
 
         cars.printCar();
         cars1.printCar();
@@ -186,9 +187,11 @@ public class Main {
         //   }
         // }
 
-        PassengerCars car = new PassengerCars("Kia", "K5", 3.0);
+        PassengerCars car = new PassengerCars("Kia", "K5", 3.0,TypeCars.SUV);
         DriverB driverB = new DriverB("Роман", 10, car);
         System.out.println(driverB);
+
+        buses1.printType();
 
     }
 }

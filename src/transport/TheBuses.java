@@ -3,9 +3,19 @@ package transport;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TheBuses extends TransportForRacing implements Competing {
+    public TypeOfoutOfSight typeOfoutOfSight;
 
-    public TheBuses(String brand, String model, double engineVolume) {
+    public TypeOfoutOfSight getTypeOfoutOfSight() {
+        return typeOfoutOfSight;
+    }
+
+    public void setTypeOfoutOfSight(TypeOfoutOfSight typeOfoutOfSight) {
+        this.typeOfoutOfSight = typeOfoutOfSight;
+    }
+
+    public TheBuses(String brand, String model, double engineVolume, TypeOfoutOfSight typeOfoutOfSight) {
         super(brand, model, engineVolume);
+        this.typeOfoutOfSight = typeOfoutOfSight;
     }
 
 
@@ -21,6 +31,14 @@ public class TheBuses extends TransportForRacing implements Competing {
                 this.getBrand(),
                 this.getModel());
     }
+
+    @Override
+    public void printType() {
+        if (typeOfoutOfSight == null) {
+            System.out.println("Данные не верны");
+        } else {
+            System.out.println("Тип машины " + "от " + typeOfoutOfSight.getFrom() + "до " + typeOfoutOfSight.getTo());
+    }}
 
 
     public void pitStop() {

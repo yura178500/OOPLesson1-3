@@ -35,4 +35,6 @@ public abstract class TransportForRacing {
     public abstract void startDriving();
 
     public abstract void finishDriving();
-}
+
+    public abstract void printType();
+    }

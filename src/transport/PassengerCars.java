@@ -2,10 +2,23 @@ package transport;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+
+
 public class PassengerCars extends TransportForRacing implements Competing {
 
-    public PassengerCars(String brand, String model, double engineVolume) {
+    private TypeCars typeCars;
+
+    public TypeCars getTypeCars() {
+        return typeCars;
+    }
+
+    public void setTypeCars(TypeCars typeCars) {
+        this.typeCars = typeCars;
+    }
+
+    public PassengerCars(String brand, String model, double engineVolume, TypeCars typeCars) {
         super(brand, model, engineVolume);
+        this.typeCars = typeCars;
     }
 
     public void startDriving() {
@@ -18,6 +31,16 @@ public class PassengerCars extends TransportForRacing implements Competing {
         System.out.printf("Автомобиль %s %s закончи движение",
                 this.getBrand(),
                 this.getModel());
+    }
+
+
+    public void printType() {
+        if (typeCars == null) {
+            System.out.println("Данные не верны");
+        } else {
+            System.out.println("Тип машины " + typeCars );
+        }
+
     }
 
 
