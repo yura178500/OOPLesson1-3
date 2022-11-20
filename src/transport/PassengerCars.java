@@ -1,5 +1,7 @@
 package transport;
 
+import driver.DriverB;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -19,6 +21,11 @@ public class PassengerCars extends TransportForRacing implements Competing {
     public PassengerCars(String brand, String model, double engineVolume, TypeCars typeCars) {
         super(brand, model, engineVolume);
         this.typeCars = typeCars;
+    }
+
+    @Override
+    protected void add(Mtchanik<?> mtchanik) {
+
     }
 
     public void startDriving() {
@@ -64,5 +71,11 @@ public class PassengerCars extends TransportForRacing implements Competing {
         System.out.println("Легковой автомобиль: " + getBrand() +
                 ", модель: " + getModel() +
                 ", объем двигателя: " + getEngineVolume() + " л");
+    }
+    public void repair() {
+        System.out.println("Машина"+ getBrand()+getModel()+"Починена");
+    }
+
+    public void addDriver(DriverB олег) {
     }
 }

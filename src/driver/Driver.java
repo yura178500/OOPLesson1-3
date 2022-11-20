@@ -15,6 +15,16 @@ public abstract class Driver<T extends TransportForRacing> {
         this.car = car;
     }
 
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "fullName='" + fullName + '\'' +
+                ", category='" + category + '\'' +
+                ", drivingExperience=" + drivingExperience +
+                ", car=" + car +
+                '}';
+    }
+
     public String getFullName() {
         return fullName;
     }
@@ -42,10 +52,8 @@ public abstract class Driver<T extends TransportForRacing> {
                 this.fullName, this.car.getBrand(), this.car.getModel());
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "Водитель %s управляет автомобилем %s %s и будет участвовать в заезде",
-                this.fullName, this.car.getBrand(), this.car.getModel());
+    public Driver<?> add(Driver<?> drivers) {
+        drivers = add(drivers);
+        return drivers;
     }
 }

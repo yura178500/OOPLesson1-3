@@ -1,14 +1,20 @@
+import driver.Driver;
 import driver.DriverB;
+import driver.DriverC;
+import driver.DriverD;
 import transport.*;
-import transport.Car.Key;
 
-import java.time.LocalDate;
-import java.util.Date;
-
-import static transport.Car.printCarInfo;
+import java.io.File;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        Sponsor lucoil = new Sponsor("Лукойл", 200000);
+        Mtchanik<Trucks> oleg = new Mtchanik<Trucks>("JAC", "N-35/25", 3.4, "Олег", "Петров", "Нептун");
+        Sponsor dvigenie = new Sponsor("Движение", 100000);
+        Mtchanik<PassengerCars> roma = new Mtchanik<PassengerCars>("Лада", "N-35/25", 3.4, "Рома", "Петров", "Нептун");
+        Mtchanik<TheBuses> kirill = new Mtchanik<TheBuses>("Пазик", "N-35/25", 3.4, "Кирилл", "Петров", "Нептун");
+
 
         //   Car ladaGranta = new Car("Лада", "Гранта", (int) 1.7, "желтого", 2015, "Россия", "МКПП", "универсал", "х000хх000", 5, true, null, 500);
         //   Car audiA8 = new Car("Audi ", "A8", (int) 3.0, "черный", 2020, "Германия", "АКПП", "универсал", "х000хх000", 5, true, null, 500);
@@ -127,21 +133,32 @@ public class Main {
         //  hyunda.refill();
         //   kia.refill();
         System.out.println("==============================++++++++++++++++++++++++++++++++++++++++++++++++++===");
-        TheBuses buses = new TheBuses("Икарус", "121", 3.2,TypeOfoutOfSight.LARGE);
-        TheBuses buses1 = new TheBuses("Пазик", "101", 4.0,TypeOfoutOfSight.ESPECIALLY);
-        TheBuses buses2 = new TheBuses("Лиаз", "101", 3.2,TypeOfoutOfSight.MEDIUM);
-        TheBuses buses3 = new TheBuses("БМВ", "121", 3.4,TypeOfoutOfSight.ESPECIALLE_SMALL);
-        TheBuses buses4 = new TheBuses("БМВ", "121", 3.4,TypeOfoutOfSight.SMAL);
+        TheBuses buses = new TheBuses("Икарус", "121", 3.2, TypeOfoutOfSight.LARGE);
+        TheBuses buses1 = new TheBuses("Пазик", "101", 4.0, TypeOfoutOfSight.ESPECIALLY);
+        TheBuses buses2 = new TheBuses("Лиаз", "101", 3.2, TypeOfoutOfSight.MEDIUM);
+        TheBuses buses3 = new TheBuses("БМВ", "121", 3.4, TypeOfoutOfSight.ESPECIALLE_SMALL);
+        TheBuses buses4 = new TheBuses("БМВ", "121", 3.4, TypeOfoutOfSight.SMAL);
+        buses1.addMtchanik(kirill);
+        buses1.addDriver(new DriverD("Кирилл", 10, buses1));
+        buses1.addSponsor(dvigenie);
 
-        PassengerCars cars = new PassengerCars("Лада", "Granta", 2.0,TypeCars.CROSSOVER);
-        PassengerCars cars1 = new PassengerCars("Ауди", "A8", 2.4,TypeCars.MINIVAN);
-        PassengerCars cars2 = new PassengerCars("Киа", "Sportage", 2.8,TypeCars.SEDAN);
-        PassengerCars cars3 = new PassengerCars("Хундай", "Avante", 1.4,TypeCars.SUV);
+        PassengerCars cars = new PassengerCars("Лада", "Granta", 2.0, TypeCars.CROSSOVER);
+        PassengerCars cars1 = new PassengerCars("Ауди", "A8", 2.4, TypeCars.MINIVAN);
+        PassengerCars cars2 = new PassengerCars("Киа", "Sportage", 2.8, TypeCars.SEDAN);
+        PassengerCars cars3 = new PassengerCars("Хундай", "Avante", 1.4, TypeCars.SUV);
+        cars.addMtchanik(roma);
+        cars.addDriver(new DriverB("Олег", 10, cars));
+        cars.addSponsor(dvigenie);
 
-        Trucks jac = new Trucks("JAC", "N-35/25", 3.4,TypeOfLoadCapacity.N1);
-        Trucks kamaz = new Trucks("Камаз", "54901", 2.4,TypeOfLoadCapacity.N2);
-        Trucks valdai = new Trucks("Волдай", "Next", 3.4,TypeOfLoadCapacity.N3);
-        Trucks gazel = new Trucks("Газель", "NN", 2.8,TypeOfLoadCapacity.N2);
+        Trucks jac = new Trucks("JAC", "N-35/25", 3.4, TypeOfLoadCapacity.N1);
+        Trucks kamaz = new Trucks("Камаз", "54901", 2.4, TypeOfLoadCapacity.N2);
+        Trucks valdai = new Trucks("Волдай", "Next", 3.4, TypeOfLoadCapacity.N3);
+        Trucks gazel = new Trucks("Газель", "NN", 2.8, TypeOfLoadCapacity.N2);
+        kamaz.addMtchanik(oleg);
+       // kamaz.addDriver(new DriverC("Олег", 10, kamaz));
+        kamaz.addSponsor(lucoil);
+
+
 
         cars.printCar();
         cars1.printCar();
@@ -187,13 +204,30 @@ public class Main {
         //   }
         // }
 
-        PassengerCars car = new PassengerCars("Kia", "K5", 3.0,TypeCars.SUV);
+        PassengerCars car = new PassengerCars("Kia", "K5", 3.0, TypeCars.SUV);
         DriverB driverB = new DriverB("Роман", 10, car);
         System.out.println(driverB);
+        DriverC driverC = new DriverC("Роман", 10, kamaz);
+        DriverD driverD = new DriverD("Роман", 10, buses1);
+        System.out.println(driverC);
+        System.out.println(driverD);
 
         buses1.printType();
+        List<TransportForRacing> transport = List.of(kamaz, car,buses1);
+        for (TransportForRacing transport1 : transport) {
+            printInfo(transport1);
+        }
+        }
+    static Mtchanik<?> mtchanik = new Mtchanik<>("Камаз ", "456 ", 2.4, "Кирилл ", "Ветров ", "Лукоил ");
+    public Sponsor sponsor = new Sponsor("Движение", 30000);
+    public Sponsor sponsor1 = new Sponsor("Лукоил", 30000);
 
+
+    public static void printInfo (TransportForRacing transport) {
+        System.out.println(transport.getDrivers() + transport.getModel());
+        System.out.println("Водитель" + transport.getDrivers());
+        System.out.println("Спонсор" + transport.getSponsor());
+        System.out.println("Механик" + mtchanik.getName() + mtchanik.getSorname() + mtchanik.getCompani());
+       }
     }
-}
-
 

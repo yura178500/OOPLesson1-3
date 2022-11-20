@@ -19,6 +19,11 @@ public class Trucks extends TransportForRacing implements Competing {
         this.typeOfLoadCapacity = typeOfLoadCapacity;
     }
 
+    @Override
+    protected void add(Mtchanik<?> mtchanik) {
+
+    }
+
     public void startDriving() {
         System.out.printf("Грузовик %s %s начни движение",
                 this.getBrand(),
@@ -33,14 +38,14 @@ public class Trucks extends TransportForRacing implements Competing {
     }
 
 
-    public void  printType() {
-        if (typeOfLoadCapacity == null) {
+    public void printType() {
+        if (typeOfLoadCapacity != null) {
             System.out.println("Данные не верны");
         } else {
-            String from = (typeOfLoadCapacity.getFrom() != null) ? ("от " + typeOfLoadCapacity.getFrom()) : "";
-            String to = (typeOfLoadCapacity.getTo() != null) ? ("от " + typeOfLoadCapacity.getTo()) : "";
+            String from = ("от " + typeOfLoadCapacity.getFrom());
+            String to = ("от " + typeOfLoadCapacity.getTo());
             System.out.println("Тип машины " + from + to);
-    }
+        }
 
     }
 
@@ -64,5 +69,9 @@ public class Trucks extends TransportForRacing implements Competing {
         System.out.println("Грузовик: " + getBrand() +
                 ", модель: " + getModel() +
                 ", объем двигателя: " + getEngineVolume() + " л");
+    }
+
+    public void repair() {
+        System.out.println("Машина" + getBrand() + getModel() + "Починена");
     }
 }

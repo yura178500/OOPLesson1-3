@@ -1,5 +1,7 @@
 package transport;
 
+import driver.DriverD;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class TheBuses extends TransportForRacing implements Competing {
@@ -18,6 +20,11 @@ public class TheBuses extends TransportForRacing implements Competing {
         this.typeOfoutOfSight = typeOfoutOfSight;
     }
 
+
+    @Override
+    protected void add(Mtchanik<?> mtchanik) {
+
+    }
 
     public void startDriving() {
         System.out.printf("Автобус %s %s начни движение",
@@ -62,5 +69,10 @@ public class TheBuses extends TransportForRacing implements Competing {
                 ", модель: " + getModel() +
                 ", объем двигателя: " + getEngineVolume() + " л");
     }
+    public void repair() {
+        System.out.println("Машина"+ getBrand()+getModel()+"Починена");
+    }
 
+    public void addDriver(DriverD кирилл) {
+    }
 }

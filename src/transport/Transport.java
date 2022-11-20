@@ -1,5 +1,9 @@
 package transport;
 
+import driver.Driver;
+
+import java.util.List;
+
 public abstract class Transport {
     public String stamp;
     public String model;
@@ -7,6 +11,8 @@ public abstract class Transport {
     private String countryOfManufacture;
     public String bodyColor;
     public int maximumMovementSpeed;
+
+
 
     public Transport(String stamp, String model, int yearOfRelease, String countryOfManufacture, String bodyColor, int maximumMovementSpeed) {
 

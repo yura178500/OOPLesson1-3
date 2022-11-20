@@ -1,9 +1,22 @@
 package transport;
 
+import driver.Driver;
+import driver.DriverC;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class TransportForRacing {
     private String brand;
     private String model;
     private double engineVolume;
+
+    public List<Driver<?>> getDrivers() {
+        return drivers;
+    }
+
+    public List<Driver<?>> drivers = new ArrayList<>();
+
 
     public TransportForRacing(String brand, String model, double engineVolume) {
         this.brand = brand;
@@ -15,6 +28,22 @@ public abstract class TransportForRacing {
             System.out.println("Неверное значение");
         if (engineVolume <= 0)
             System.out.println("Неверное значение");
+    }
+
+    public void addDriver(DriverC олег) {
+        drivers.add((Driver<?>) drivers);
+
+    }
+    public void addMtchanik(Mtchanik<?>mtchanik) {
+        mtchanik.add((mtchanik));
+
+    }
+
+    protected abstract void add(Mtchanik<?> mtchanik);
+
+    public void addSponsor(Sponsor sponsor) {
+        sponsor.add(sponsor);
+
     }
 
     public double getEngineVolume() {
@@ -37,4 +66,17 @@ public abstract class TransportForRacing {
     public abstract void finishDriving();
 
     public abstract void printType();
+
+    public void repair() {
+           }
+    public void service() {
     }
+
+    public Iterable<? extends Sponsor> getSponsor() {
+        return null;
+    }
+
+    public Iterable<? extends Mtchanik<?>> getMtchanik() {
+        return null;
+    }
+}
